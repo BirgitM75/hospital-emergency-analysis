@@ -1,0 +1,11 @@
+aufnahme_id;behandlung_typ;kosten
+1001;Labor;45.00
+1002;CT_Scan;650.00
+1002;Labor;120.00
+1003;Beratung;35.00
+1004;Roentgen;180.00
+1004;Labor;90.00
+1005;Ultraschall;110.00
+1006;Beratung;35.00
+1007;Gipsverband;75.00
+1008;Roentgen;180.00

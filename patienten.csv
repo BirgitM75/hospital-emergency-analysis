@@ -1,0 +1,9 @@
+patient_id;alter;versicherungs_status;plz_bereich
+101;45;Gesetzlich;451
+102;82;Gesetzlich;453
+103;19;Gesetzlich;451
+104;32;Privat;452
+105;67;Gesetzlich;458
+106;28;Gesetzlich;451
+107;55;Privat;452
+108;73;Gesetzlich;453
