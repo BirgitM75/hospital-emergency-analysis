@@ -1,0 +1,43 @@
+# SQL Analysis & Research Questions
+
+The SQL queries used in MySQL to identify bottlenecks and triage issues within the emergency department.
+
+### 1. Volume of Non-Urgent Cases
+Question:** What percentage of patients arriving at the emergency department are classified as non-urgent cases (Triage levels 4 and 5)?
+Objective:** Quantify low-priority patients who contribute to overcrowding.
+
+
+SELECT 
+    triage_stufe AS triage_level,
+    COUNT(*) AS patient_count,
+    ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER(), 2) AS percentage
+FROM aufnahmen
+GROUP BY triage_stufe
+ORDER BY triage_stufe ASC;
+```
+
+### 2. Peak Hours based on Arrivals
+* **Question:** At what specific times of the day does the emergency department experience the highest influx of patients?
+* **Objective:** Identify peak hours to assist with optimizing staff scheduling.
+
+SELECT 
+    HOUR(STR_TO_DATE(zeit_ankunft, '%d.%m.%Y %H:%i')) AS arrival_hour,
+    COUNT(*) AS total_arrivals
+FROM aufnahmen
+GROUP BY arrival_hour
+ORDER BY arrival_hour ASC;
+
+
+### 3. Financial Costs of Treatments
+* **Question:** Which types of treatments generate the highest total costs in the emergency department?
+* **Objective:** Analyze the financial drivers of emergency department admissions.
+
+
+SELECT 
+    behandlung_typ AS treatment_type,
+    COUNT(*) AS total_treatments,
+    SUM(kosten) AS total_cost_euro,
+    AVG(kosten) AS avg_cost_per_treatment
+FROM behandlungskosten
+GROUP BY behandlung_typ
+ORDER BY total_cost_euro DESC;
